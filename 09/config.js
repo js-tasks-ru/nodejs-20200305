@@ -1,8 +1,8 @@
 module.exports = {
   mongodb: {
     uri: (process.env.NODE_ENV === 'test')
-      ? 'mongodb://localhost/07-test'
-      : 'mongodb://localhost/07',
+      ? 'mongodb://localhost/test-auth'
+      : process.env.MONGODB_URI || 'mongodb://localhost/auth',
   },
   crypto: {
     iterations: (process.env.NODE_ENV === 'test' ? 1 : 12000),
@@ -33,11 +33,6 @@ module.exports = {
       options: {
         scope: ['email'],
       },
-      test: {
-        login: '',
-        password: '',
-      }
     },
   },
-  
 };

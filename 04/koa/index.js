@@ -71,7 +71,7 @@ app.use(require('koa-bodyparser')());
 
 app.use(async (ctx, next) => {
   if (ctx.url !== '/bye') return next();
-  
+  ctx.query
   ctx.body = 'Bye, Ivan!';
 });
 

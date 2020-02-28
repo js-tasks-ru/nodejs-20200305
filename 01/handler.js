@@ -11,7 +11,7 @@ function sleep(ms) {
 
 function handler(req, res) {
   i++;
-  // obj[Math.random()] = new Array(100000).fill('*').join('');
+  obj[Math.random()] = new Array(100000).fill('*').join('');
   
   // sleep(2000);
   setTimeout(() => {

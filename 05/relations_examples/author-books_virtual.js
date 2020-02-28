@@ -15,10 +15,10 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  author: [{
+  author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Author',
-  }],
+  },
 });
 
 const Book = mongoose.model('Book', bookSchema);
@@ -43,9 +43,9 @@ const Author = mongoose.model('Author', authorSchema);
   await Author.deleteMany({});
 
   const LeoTolstoy = await Author.create({name: 'Leo Tolstoy'});
-  await Book.create({title: 'War And Peace', author: [LeoTolstoy]});
-  await Book.create({title: 'Anna Karenina', author: [LeoTolstoy]});
-  await Book.create({title: 'Hadji Murad', author: [LeoTolstoy]});
+  await Book.create({title: 'War And Peace', author: LeoTolstoy});
+  await Book.create({title: 'Anna Karenina', author: LeoTolstoy});
+  await Book.create({title: 'Hadji Murad', author: LeoTolstoy});
 
   const author = await Author.findOne({name: 'Leo Tolstoy'}).populate('books');
   console.log(author);
