@@ -1,22 +1,10 @@
-let i = 0;
-
-const obj = {};
-
-function sleep(ms) {
-  const d = Date.now();
-  while (true) {
-    if (Date.now() - d >= ms) break;
-  }
-}
+const memory_leak_obj = {};
 
 function handler(req, res) {
-  i++;
-  obj[Math.random()] = new Array(100000).fill('*').join('');
+  memory_leak_obj[Math.random()] = (new Array(1000000)).fill('*');
   
-  // sleep(2000);
-  setTimeout(() => {
-    res.end(i.toString());
-  }, 2000);
+  res.end('hello world');
 }
 
 module.exports = handler;
+// commonjs

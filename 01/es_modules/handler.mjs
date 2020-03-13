@@ -1,8 +1,5 @@
-let i = 0;
-
 function handler(req, res) {
-  i++;
-  res.end(i.toString());
+  res.end('hello');
 }
 
 export default handler;

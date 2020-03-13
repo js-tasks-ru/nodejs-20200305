@@ -1,19 +1,16 @@
 const fs = require('fs');
 
-// eventloop
-// V8 (JS VM) + libUV (fs, network)
+// V8 + libUV + wrapper
 
 console.log('start'); // 1
 
-// macrotask queue: []
-// microtask queue: []
-// nextTick queue: []
+// queue (macro)tasks: []
+// queue microtasks: []
+// queue nexttick: []
 
-fs.readFile(__filename, (err, content) => {
-  console.log('readFile'); // 9 exit
+fs.readFile(__filename, () => {
+  console.log('readFile'); // 8
 });
-
-setTimeout(() => { console.log('timeout') }, 1);
 
 queueMicrotask(() => {
   console.log('queueMicrotask'); // 6
@@ -32,10 +29,6 @@ process.nextTick(() => {
   process.nextTick(() => {
     console.log('nextTick2'); // 5
   });
-});
-
-setImmediate(() => {
-  console.log('setImmediate'); // 8
 });
 
 console.log('end'); // 3
